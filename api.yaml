@@ -1,0 +1,244 @@
+openapi: 3.0.3
+info:
+  title: Policy Update API
+  version: 1.0.0
+servers:
+  - url: https://sf-integration-test.wiremockapi.cloud
+paths:
+  /v1/public/policies/update/{policyID}:
+    post:
+      summary: Update a policy
+      parameters:
+        - name: policyID
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the policy to update
+      responses:
+        '200':
+          description: Policy updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      enabled:
+                        type: boolean
+                      policyName:
+                        type: string
+                      authType:
+                        type: string
+                        enum: [ActiveDirectory]
+                      protocols:
+                        type: array
+                        items:
+                          type: string
+                          enum: [Kerberos]
+                      policyType:
+                        type: string
+                        enum: [static]
+                      allUsersAndGroups:
+                        type: boolean
+                      usersAndGroups:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            identifierType:
+                              type: string
+                              enum: [GUID]
+                            identifier:
+                              type: string
+                            displayName:
+                              type: string
+                            domain:
+                              type: string
+                      allDevices:
+                        type: boolean
+                      sources:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            identifierType:
+                              type: string
+                              enum: [GUID]
+                            identifier:
+                              type: string
+                            displayName:
+                              type: string
+                      allDestinations:
+                        type: boolean
+                      destinations:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            identifierType:
+                              type: string
+                              enum: [GUID]
+                            identifier:
+                              type: string
+                            displayName:
+                              type: string
+                            domain:
+                              type: string
+                            services:
+                              type: array
+                              items:
+                                type: string
+                      action:
+                        type: string
+                        enum: [allow]
+                      MFAPrompt:
+                        type: string
+                      tokens:
+                        type: array
+                        items:
+                          type: string
+                      timeOfDay:
+                        type: string
+                      MFAFrequencyRequireMFA:
+                        type: string
+                      MFAFrequencyFrom:
+                        type: string
+                      MFAFrequencyAccordingTo:
+                        type: string
+                      MFAFrequencyPolicyGrouping:
+                        type: string
+                      retrospectiveValidation:
+                        type: string
+                      unpairedUsersAction:
+                        type: string
+                        enum: [default]
+                      allRADIUSClientIPs:
+                        type: boolean
+                      RADIUSClientIPs:
+                        type: array
+                        items:
+                          type: string
+                          format: ipv4
+                      bridgeType:
+                        type: string
+                      enterpriseApp:
+                        type: string
+components:
+  schemas:
+    PolicyUpdateResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            policyName:
+              type: string
+            authType:
+              type: string
+              enum:
+                - ActiveDirectory
+            protocols:
+              type: array
+              items:
+                type: string
+                enum:
+                  - Kerberos
+            policyType:
+              type: string
+              enum:
+                - static
+            allUsersAndGroups:
+              type: boolean
+            usersAndGroups:
+              type: array
+              items:
+                type: object
+                properties:
+                  identifierType:
+                    type: string
+                    enum:
+                      - GUID
+                  identifier:
+                    type: string
+                  displayName:
+                    type: string
+                  domain:
+                    type: string
+            allDevices:
+              type: boolean
+            sources:
+              type: array
+              items:
+                type: object
+                properties:
+                  identifierType:
+                    type: string
+                    enum:
+                      - GUID
+                  identifier:
+                    type: string
+                  displayName:
+                    type: string
+            allDestinations:
+              type: boolean
+            destinations:
+              type: array
+              items:
+                type: object
+                properties:
+                  identifierType:
+                    type: string
+                    enum:
+                      - GUID
+                  identifier:
+                    type: string
+                  displayName:
+                    type: string
+                  domain:
+                    type: string
+                  services:
+                    type: array
+                    items:
+                      type: string
+            action:
+              type: string
+              enum:
+                - allow
+            MFAPrompt:
+              type: string
+            tokens:
+              type: array
+              items:
+                type: string
+            timeOfDay:
+              type: string
+            MFAFrequencyRequireMFA:
+              type: string
+            MFAFrequencyFrom:
+              type: string
+            MFAFrequencyAccordingTo:
+              type: string
+            MFAFrequencyPolicyGrouping:
+              type: string
+            retrospectiveValidation:
+              type: string
+            unpairedUsersAction:
+              type: string
+              enum:
+                - default
+            allRADIUSClientIPs:
+              type: boolean
+            RADIUSClientIPs:
+              type: array
+              items:
+                type: string
+                format: ipv4
+            bridgeType:
+              type: string
+            enterpriseApp:
+              type: string
